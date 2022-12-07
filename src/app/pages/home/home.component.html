@@ -3,8 +3,7 @@
 <full-slider-component *ngIf="slider && slider.length>0" class="d-block" [data]="slider"></full-slider-component>
 
 <div class="bg-layer-1"
-     [defaultImage]="''"
-     [lazyLoad]="'assets/img/bg/61.svg'">
+     [style.background]="'url(assets/img/bg/61.svg)'">
   <div *ngFor="let section of sections;let index= index">
     <div *ngIf="section && section.sectionMoviesList?.length>0">
       <div class="container">
@@ -88,9 +87,18 @@
           <div class="row">
             <div class="col-md-5 ml-sm-15 d-flex align-items-end">
               <div class="fading-layer-bottom"></div>
-              <img class="block"
-                   [defaultImage]="'assets/placeholder2.jpg'"
-                   [lazyLoad]="section.sectionMoviesList[0].images?.covers[0]?.sizes?.s300?section.sectionMoviesList[0].images.covers[0].sizes.s300:''"/>
+
+              <picture>
+                <source media="(max-width: 992px)"
+                        [srcset]="section.sectionMoviesList[0].images?.covers[0]?.sizes?.s150?section.sectionMoviesList[0].images.covers[0].sizes.s150:''"/>
+                <source media="(max-width: 1920px)"
+                        [srcset]="section.sectionMoviesList[0].images?.covers[0]?.sizes?.s300?section.sectionMoviesList[0].images.covers[0].sizes.s300:''"/>
+                <img class="poster mb-2 d-md-none d-block w-100"
+                     [alt]="section.sectionMoviesList[0]?.persian_name"
+                     [src]="section.sectionMoviesList[0].images?.covers[0]?.sizes?.s700?section.sectionMoviesList[0].images.covers[0].sizes.s700:''"/>
+
+              </picture>
+
             </div>
 
             <div class="col-md-7 ml-sm-15 text-alignment">

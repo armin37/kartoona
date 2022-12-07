@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { HeadersModule } from 'src/app/components/headers/headers.module';
-import {LazyLoadImageModule} from 'ng-lazyload-image';
 import {HomeSlidersModule} from '../../components/sliders/home-sliders.module';
 import {SlidersCardsModule} from '../../components/cards/slider-cards.module';
 
@@ -15,7 +14,6 @@ import {SlidersCardsModule} from '../../components/cards/slider-cards.module';
     HomeRoutingModule,
     HeadersModule,
     HomeSlidersModule,
-    LazyLoadImageModule,
     SlidersCardsModule
   ]
 })
