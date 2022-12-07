@@ -1,0 +1,39 @@
+<div class="container-fluid pointer" [routerLink]="'/movie/'+data.slug">
+  <div class="row">
+    <div class="col-md-6">
+      <picture>
+        <source media="(max-width: 992px)"
+                [srcset]="data?.images?.thumbnails[0]?.sizes?.s150?data.images.thumbnails[0].sizes.s150:''"/>
+        <source media="(max-width: 1920px)"
+                [srcset]="data?.images?.thumbnails[0]?.sizes?.s300?data.images.thumbnails[0].sizes.s300:''"/>
+        <img class="d-block poster w-100"
+             [alt]="data?.persian_name"
+             [src]="data?.images?.thumbnails[0]?.sizes?.s700?data.images.thumbnails[0].sizes.s700:''"/>
+      </picture>
+    </div>
+
+    <div class="col-md-6">
+      <h2 class="block text-alignment font-sm xlight-black">{{data.persian_name}}</h2>
+      <p class="text-alignment mb-1">
+        <span class="rate d-inline-flex align-items-center">
+          <span>{{data.imdb}}</span>
+          <img src="/assets/img/icons/imdb.png"/>
+        </span>
+      </p>
+
+      <p class="mt-1 mb-0 dark-gray text-alignment font-xsm font-weight-bold">
+        مدت زمان:
+        {{data?.duration * 60000 | date:'H:mm':'UTC'}} دقیقه
+      </p>
+
+      <p class="mt-1 mb-1 dark-gray text-alignment font-xsm font-weight-bold">
+        زبان:
+        {{data?.language}}
+      </p>
+
+      <p class="mt-2 dark-gray text-alignment font-xxsm text-justify">
+        {{data.summary}}
+      </p>
+    </div>
+  </div>
+</div>

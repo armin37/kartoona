@@ -1,0 +1,24 @@
+@import "../../../../customVariables.scss";
+
+.poster {
+  border-radius: 1rem;
+}
+.title {
+  h3 {
+    margin: 0;
+    margin-left: 0.5rem;
+    font-size: 0.9rem - $font-ratio;
+    color: $xlight-black;
+  }
+}
+.genres {
+  text-align: $text-alignment;
+  a {
+    color: $dark-gray;
+    font-size: 0.8rem - $font-ratio;
+  }
+  span {
+    display: inline-block;
+    text-align: $text-alignment;
+  }
+}

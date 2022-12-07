@@ -1,0 +1,101 @@
+.about-us {
+  background-image: url("../../../assets/img/about-us.png");
+  padding-top: 100px;
+  padding-bottom: 100px;
+  background-size: 100% !important;
+  background-repeat: no-repeat !important;
+  background-position: center top !important;
+  // height: 85vh;
+}
+.about-container {
+  padding-top: 100px;
+}
+.about-title {
+  font-size: 35px;
+  color: #707070;
+}
+.about-list-title {
+  font-size: 20px;
+  color: #707070;
+}
+.about-content {
+  font-size: 18px;
+  color: #707070;
+}
+.feature-list {
+  list-style-type: none;
+  font-size: 20px;
+}
+.list-bullet {
+  height: 10px;
+  width: 10px;
+  background-color: #c1c1c1;
+  border-radius: 50%;
+  display: inline-block;
+}
+.card-box {
+  padding: 10px 50px;
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 50px #0000000d;
+  border-radius: 5px;
+  margin: 50px;
+  text-align: justify;
+  border-right: 10px solid #6200a5;
+}
+.circle-item {
+  background-color: #0062b3;
+  width: 80px;
+  height: 80px;
+  border: 5px solid white;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 0 0 8px 0px #ddd;
+  padding: 20px;
+  margin: auto;
+  img {
+    position: absolute;
+    top: 50%; /* position the top  edge of the element at the middle of the parent */
+    left: 50%; /* position the left edge of the element at the middle of the parent */
+    transform: translate(-50%, -50%);
+    width: 30px;
+  }
+}
+#cinema{
+  background-color: #ffde6d;
+}
+#series{
+  background-color: #ff9400;
+}
+#sixties{
+  background-color: #fe0000;
+}
+#under4{
+  background-color: #fff;
+}
+#documantary{
+  background-color: #0062b3;
+}
+#mother{
+  background-color: #0fad00;
+}
+#experiment{
+  background-color: #c4e96a;
+}
+#trailer{
+  background-color: #ffc501;
+}
+#teenage{
+  background-color: #ff6600;
+}
+#comedy{
+  background-color: #cd007c;
+}
+#adventure{
+  background-color: #0010a4;
+}
+#scifi{
+  background-color: #00c8bd;
+}
+#mainLanguage{
+  background-color: #8dc701;
+}

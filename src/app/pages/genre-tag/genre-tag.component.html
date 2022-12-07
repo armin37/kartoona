@@ -1,0 +1,33 @@
+<header-component></header-component>
+<div class="movie-list" *ngIf="info">
+  <div class="d-flex justify-content-center align-items-center background-container"
+       style="background-image: url('./assets/img/placeholder2.png');">
+    <div class="fading-layer"></div>
+    <h1 class="genre-title">
+      {{info.name}}
+    </h1>
+  </div>
+  <div class="container">
+
+    <div class="section-title mb-4">
+        <span>
+            {{info.name}}
+        </span>
+
+      <div>
+        <!--<a href="#">مشاهده همه</a>-->
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <div class="row">
+          <div class="col-6 col-md-4 mb-2" *ngFor="let mv of movies">
+            <info-image-top-card-component [data]="mv"></info-image-top-card-component>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer-component></footer-component>

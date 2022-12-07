@@ -1,0 +1,39 @@
+<div class="container {{background}}">
+    <div class="row {{rowClass}}">
+        <div class="col-md-6 p-0">
+            <img width="100%" [src]="data.thumbnails?.sfull" />
+        </div>
+        <div class="col-md-6 text-right py-3">
+            <h2 class="font-nr light-black pointer" [routerLink]="'/post/'+data.slug">{{data.name}}</h2>
+
+            <p class="xlight-black font-xsm">{{data.summary}}</p>
+
+            <div class="row align-items-end">
+                <div class="col-8 postInfo">
+                    <p>
+                        <i class="fas fa-calendar-week"></i>
+                        <span class="font-xsm">{{data.updatedAtStr}}</span>
+                    </p>
+
+                    <p>
+                        <i class="far fa-eye"></i>
+                        <!-- <span class="gold font-xsm">{{data.writer?.name}}</span> -->
+                        <span class="font-xsm">{{data.viewCount}}</span>
+                    </p>
+
+                    <p>
+                        <i class="fas fa-comment"></i>
+                        <!-- <span class="gold font-xsm">{{data.writer?.name}}</span> -->
+                        <span class="font-xsm">{{data.commentCount}}</span>
+                    </p>
+                </div>
+                <div class="col-4 text-left">
+                    <button [routerLink]="'/post/'+data.slug"
+                        class="full-rounded purple-gradiant-bg white font-xsm px-3 py-1">
+                        ادامه مطلب
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<header-component></header-component>
+<div class="pricing">
+  <div class="container-fluid">
+    <div class="d-flex flex-wrap justify-content-around">
+      <div class="col-md-6 col-lg-4 col-12 mt-5" *ngFor="let plan of plans;let i=index;">
+        <div class="text-center">
+          <span class="card-badge">
+            {{plan.title}}
+          </span>
+        </div>
+        <div class="card px-5 mb-5 mb-lg-0">
+          <div class="card-body">
+            <h5 class="card-title text-muted text-center mt-4">{{plan.body}}</h5>
+            <h5 class="card-title text-muted text-center  mt-4">{{plan.price ? plan.price + " تومان " : "رایگان"}}</h5>
+            <div class="text-center mt-4">
+              <button class="pricing-btn {{plan.class}}" (click)="confirmPayment(plan,plan.id)">انتخاب کنید</button>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="plan.showPayment">
+          <form class="input-group my-3" [formGroup]="discountForm">
+            <div class="input-group-prepend">
+              <input formControlName="discountCode" type="text" placeholder="کد تخفیف" aria-label="Large"
+                     class="form-control">
+            </div>
+            <div class="input-group-prepend">
+              <button *ngIf="!discount" (click)="checkDiscount()" type="button" class="btn btn-primary rounded-lg mr-2">
+                محاسبه
+              </button>
+              <button *ngIf="discount" (click)="clearDiscount()" type="button" class="btn btn-primary rounded-lg mr-2">
+                انصراف
+              </button>
+            </div>
+          </form>
+          <div class="card ">
+            <div class="card-body p-0 text-center">
+              <ul class="p-0  m-0">
+                <li class="list-group-item">هزینه پلن : {{plan.price ? plan.price + " تومان " : "رایگان"}}
+                </li>
+                <li *ngIf="discount" class="list-group-item">تخفیف : {{discount.discount ? discount.discount + " تومان "
+                  : "رایگان"}}
+                </li>
+                <li class="list-group-item list-group-item-light ">{{plan.body}}</li>
+                <li *ngIf="discount" class="list-group-item "> مبلغ قابل پرداخت
+                  : {{discount.payable ? discount.payable + "
+                    تومان " :"رایگان"}}
+                </li>
+                <li *ngIf="!discount" class="list-group-item "> مبلغ قابل پرداخت : {{plan.price ? plan.price + " تومان "
+                  : "رایگان"}}
+                </li>
+                <li>
+                  <div class="row payment-gateway">
+                    <div (click)="setPaymentGateway(1)" class="col">
+                      <img
+                        [ngClass]="{'active-gateway':paymentForm.value.gateway===1}"
+                        src="/assets/img/payment/zarinpal.svg"/>
+                    </div>
+                    <div (click)="setPaymentGateway(2)" class="col">
+                      <img
+                        [ngClass]="{'active-gateway':paymentForm.value.gateway===2}"
+                        src="/assets/img/payment/idpay.svg"/>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+          <div class="input-group-prepend my-2">
+            <button (click)="payment()" type="button" class="btn py-3 block pay rounded-lg text-white">پرداخت</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<button (click)="completePayment()">Submit Order</button>-->
+<footer-component></footer-component>

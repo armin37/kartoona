@@ -1,0 +1,50 @@
+<header-component></header-component>
+<div id="bg">
+
+  <form [formGroup]="contactForm" class="d-lg-flex">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-6 d-md-none">
+          <img width="100%" class="mb-4" src="./assets/img/envelop.png" />
+        </div>
+
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col">
+              <p class="  font-xsm text-alignment white">از اینکه کارتونا را انتخاب کردید بسیارخوشحالیم.شما می توانید
+                نظرات و انتقادهای خود را با ما در میان بگذارید</p>
+              <p class="font-xsm text-alignment white">نظرات شما برای ما بسیار محترم و حائز اهمیت بوده و حتما بررسی
+                خواهیم کرد</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <input formControlName="name" class="mt-2 p-1 rounded" type="text" placeholder="نام شما">
+            </div>
+            <div class="col-md-6">
+              <input formControlName="email" class="mt-2 p-1 rounded" type="email" placeholder=" ایمیل">
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <textarea formControlName="content" rows="5" type="text" class="rounded block border-0 p-1 mt-2 md-2 "
+                placeholder="متن پیام"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col text-center">
+              <button type="submit" id="submit" (click)="saveContactUs()"
+                class="white full- full-rounded border-white medium-button purple-gradiant-bg mb-2 mt-2">ارسال
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 d-none d-md-block">
+          <img width="100%" src="./assets/img/envelop.png" />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<footer-component></footer-component>

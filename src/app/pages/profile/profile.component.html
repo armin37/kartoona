@@ -1,0 +1,253 @@
+<div id="profileWrapper">
+  <header-component></header-component>
+
+  <div class="pt-150 container">
+
+    <div class="px-15 mb-3">
+      <div class="row white-bg-with-shadow align-items-center">
+        <div class="col-sm-8">
+          <p class="mt-3 mb-2 light-black font-sm text-right">وضعیت اشتراک</p>
+          <p *ngIf="!userService.user?.activePlan" class="mb-3 red font-sm text-right">شما اشتراک ندارید. برای تماشای فیلم‌ها اشتراک تهیه کنید</p>
+          <p *ngIf="userService.user?.activePlan" class="mb-3 green font-xsm text-right">
+            طرح {{userService.user?.activePlan?.title}} تا تاریخ {{userService.user?.activePlan?.shend_date}} برای شما فعال شده است
+          </p>
+        </div>
+        <div *ngIf="!userService.user?.activePlan" class="col-sm-4 text-center text-md-left">
+          <img id="spiderman" width="100px" src="./assets/img/spiderman.jpg"/>
+          <button routerLink="/pricing" class="purple-bg white px-3 py-2 my-4 rounded">خرید اشتراک</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <mat-tab-group mat-stretch-tabs class="horizontal-tab example-stretched-tabs mat-elevation-z4 white-bg">
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <i class="fas fa-user-alt tab-icon"></i>
+              اطلاعات کاربر
+            </ng-template>
+
+            <form [formGroup]="generalInfoForm">
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>شماره تلفن</mat-label>
+                    <input formControlName="phone_number" matInput disabled>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>ایمیل</mat-label>
+                    <input formControlName="email" matInput>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-3">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>نام</mat-label>
+                    <input formControlName="first_name" matInput>
+                  </mat-form-field>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>نام خانوادگی</mat-label>
+                    <input formControlName="last_name" matInput>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div class="d-flex flex-column align-items-end">
+                    <button [disabled]="generalInfoForm.invalid" (click)="updateGeneralInfo()"
+                            class="purple-gradiant-bg white mt-5 rounded px-3 py-2">
+                      ذخیره اطلاعات
+                    </button>
+                    <img width="100px" src="./assets/img/minion.jpg"/>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <i class="fas fa-heart tab-icon"></i>
+              لیست علاقه‌مندی‌ها
+            </ng-template>
+
+            <div class="row">
+              <div *ngFor="let s of favoriteList" class="col-md-6 col-lg-3">
+                <info-image-top-card-component [data]="s" [showFavorite]="true"></info-image-top-card-component>
+              </div>
+            </div>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <i class="fas fa-money-bill-alt tab-icon"></i>
+              لیست پرداخت
+            </ng-template>
+
+            <p-table styleClass="p-datatable-responsive-demo" [value]="payments" [responsive]="true">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th>تاریخ پرداخت</th>
+                  <th>نوع اشتراک</th>
+                  <th>قیمت</th>
+                  <th>شروع اشتراک</th>
+                  <th>پایان اشتراک</th>
+                  <th>وضعیت</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-pay>
+                <tr>
+                  <td class="text-center font-sm">
+                    <span class="p-column-title">تاریخ پرداخت</span>
+                    {{pay.date}}
+                  </td>
+
+                  <td class="text-center font-sm">
+                    <span class="p-column-title">نوع اشتراک</span>
+                    {{pay.title}}
+                  </td>
+
+                  <td class="text-center font-sm">
+                    <span class="p-column-title">قیمت</span>
+                    {{pay.price}}
+                  </td>
+
+                  <td class="text-center font-sm">
+                    <span class="p-column-title">شروع اشتراک</span>
+                    {{pay.shstart_Date}}
+                  </td>
+
+                  <td class="text-center font-sm">
+                    <span class="p-column-title">پایان اشتراک</span>
+                    {{pay.shend_date}}
+                  </td>
+
+                  <td class="text-center font-sm">
+                    <span class="p-column-title">وضعیت</span>
+                    {{pay.statusStr}}
+                  </td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <i class="fas fa-lock tab-icon"></i>
+              تغییر رمز عبور
+            </ng-template>
+
+            <form [formGroup]="changePassForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>رمز عبور فعلی</mat-label>
+                        <input formControlName="old_pass" type="password" matInput>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>رمز جدید</mat-label>
+                        <input formControlName="new_pass" type="password" matInput>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>تکرار رمز جدید</mat-label>
+                        <input formControlName="new_pass_conf" type="password" matInput>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 d-none d-md-block text-center">
+                  <img id="ninja-image" src="./assets/img/ninja-turtle.jpg"/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col text-left">
+                  <button [disabled]="changePassForm.invalid" (click)="updatePassword()"
+                          class="purple-gradiant-bg white mt-5 rounded px-3 py-2">
+                    ذخیره اطلاعات
+                  </button>
+                </div>
+              </div>
+            </form>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <i class="fas fa-baby tab-icon"></i>
+              تغییر رده سنی
+            </ng-template>
+
+            <form [formGroup]="changePgForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field appearance="fill">
+                        <mat-label>رده سنی</mat-label>
+                        <mat-select formControlName="pgId">
+                          <mat-option [value]="0">
+                            - - -
+                          </mat-option>
+                          <mat-option *ngFor="let pg of pgList" [value]="pg.id">
+                            {{pg.name}}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>رمز عبور</mat-label>
+                        <input formControlName="password" type="password" matInput>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 d-none d-md-block text-center">
+                  <img id="ninja-image" src="./assets/img/ninja-turtle.jpg"/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col text-left">
+                  <button [disabled]="changePgForm.invalid" (click)="updatePg()"
+                          class="purple-gradiant-bg white mt-5 rounded px-3 py-2">
+                    ذخیره اطلاعات
+                  </button>
+                </div>
+              </div>
+            </form>
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </div>
+  </div>
+
+  <footer-component></footer-component>
+</div>

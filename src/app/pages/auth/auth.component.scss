@@ -1,0 +1,108 @@
+.auth-container {
+  background-image: url("../../../assets/img/auth.svg");
+  padding-top: 150px;
+  padding-bottom: 150px;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  input[type="text"] {
+    border: 0;
+    border-bottom: 1px solid #ebebeb;
+    display: block;
+  }
+  .input-icon {
+    background: white;
+    border: 0;
+    border-bottom: 1px solid #ebebeb;
+  }
+}
+
+.auth-container .card {
+  margin: 20px;
+  border: none;
+  border-radius: 1rem;
+  transition: all 0.2s;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  .d-flex {
+    flex-wrap: nowrap !important;
+  }
+}
+
+.card-badge {
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: white;
+  padding: 10px 50px;
+  display: block;
+}
+
+.auth-container hr {
+  margin: 1.5rem 0;
+}
+
+.auth-container .card-title {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.auth-container .card-price {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.auth-container .text-muted {
+  opacity: 0.7;
+}
+
+.auth-container .btn {
+  font-size: 80%;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  padding: 1rem 2.5rem;
+  transition: all 0.2s;
+  color: white !important;
+}
+
+.auth-container .quick-btn {
+  font-size: 80%;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  padding: 0.7rem 2.5rem;
+  transition: all 0.2s;
+  color: white !important;
+  background: transparent linear-gradient(90deg, #8a88d2 0%, #564ad1 100%) 0% 0% no-repeat padding-box;
+  margin-right: 20px;
+  white-space: nowrap;
+}
+
+.login {
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.signup {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.active-btn {
+  background: transparent linear-gradient(90deg, #8a88d2 0%, #564ad1 100%) 0% 0% no-repeat padding-box;
+}
+
+.deactive-btn {
+  background: #959595 0% 0% no-repeat padding-box;
+}
+
+.label-link {
+  font-size: 0.8rem;
+}
+
+.remember {
+  direction: rtl;
+}
+.form-control {
+  border: 0;
+  border-bottom: 1px solid #ebebeb;
+}

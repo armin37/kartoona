@@ -1,0 +1,29 @@
+input {
+  border: 1px solid #d0cfdd;
+  border-radius: 8px;
+  width: 100%;
+}
+#bg {
+  padding-top: 150px;
+  background-image: linear-gradient(
+    to bottom,
+    #eef5fb,
+    #dfebf7,
+    #d0e1f2,
+    #c1d7ee,
+    #b3cdea,
+    #b7cdea,
+    #baceeb,
+    #beceeb,
+    #d1d9f0,
+    #e3e5f5,
+    #f2f2fa,
+    #ffffff
+  );
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+#bt {
+  padding-right: 15%;
+}

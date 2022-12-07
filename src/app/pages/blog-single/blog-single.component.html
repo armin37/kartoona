@@ -1,0 +1,119 @@
+<header-component></header-component>
+
+<div *ngIf="data">
+  <genre-tag-pg-header-component [image]='data.thumbnails?.sfull' [title]="data.name"></genre-tag-pg-header-component>
+
+  <div class="container mt-4">
+    <div class="row">
+      <div class="col-md-6 text-alignment mb-3">
+        <span class="d-inline-block font-md font-weight-bold">تگ‌ها:</span>
+        <a class="d-inline-block purple-bg py-1 px-2 white ml-2 mr-2 rounded" *ngFor="let tl of data.tags"
+           [routerLink]="'/blog/tag/' + tl.slug">{{tl.name}}</a>
+      </div>
+
+      <div class="col-md-6 text-alignment mb-3">
+        <span class="d-inline-block font-md font-weight-bold">دسته‌ها:</span>
+        <a class="d-inline-block purple-bg py-1 px-2 white ml-2 mr-2 rounded"
+           *ngFor="let cat of data.categories"
+           [routerLink]="'/blog/category/'+cat.slug">{{cat.name}}</a>
+      </div>
+    </div>
+
+    <hr class="my-4"/>
+
+    <div class="row">
+      <div id="text-wrapper" class="col font-nr">
+        <div [innerHTML]="data.description">
+        </div>
+      </div>
+    </div>
+
+    <div class="row text-right mt-5 white-bg-with-shadow py-2">
+      <div class="col-md-6 my-2">
+        <div>
+          <span>نوشته شده در تاریخ: {{data.createdAtStr}}</span>
+        </div>
+      </div>
+      <div class="col-md-6 my-2 ltr d-flex align-items-center">
+        <div class="sharethis-inline-share-buttons"></div>
+      </div>
+    </div>
+
+    <div *ngIf="suggestionsList && suggestionsList.length>0">
+      <div class="row">
+        <div class="col">
+          <div class="section-title mb-4">
+            <span>
+              فیلم های پیشنهادی
+            </span>
+          </div>
+        </div>
+      </div>
+      <arrow-slider-component [id]="'suggested'" [config]="sliderService.sliderMd5"
+                              [data]="suggestionsList">
+      </arrow-slider-component>
+    </div>
+
+    <div>
+      <div *ngIf="commentList && commentList.length>0" class="row">
+        <div class="col">
+          <div class="section-title mb-4">
+            <span>
+              نظرات
+            </span>
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <comment-card-component *ngFor="let comment of commentList" [comment]="comment"></comment-card-component>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <div class="section-title mb-4">
+            <span>
+              نظرتان را ثبت کنید
+            </span>
+            <div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form [formGroup]="commentForm" class="d-block width-100">
+        <div class="row">
+          <div class="col">
+            <div class="white-bg-with-shadow p-3 my-3 text-center">
+              <div *ngIf="this.userService.userLoaded && !this.userService.user" class="row">
+                <div class="col-md-6">
+                  <input formControlName="name" placeholder="نام(اجباری)" class="block gray-bg-input mb-2"/>
+                </div>
+                <div class="col-md-6">
+                  <input formControlName="email" placeholder="ایمیل" class="block gray-bg-input mb-2"/>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <textarea formControlName="comment" rows="5" placeholder="متن نظر ..." class="block gray-bg-input">
+                </textarea>
+                </div>
+              </div>
+
+              <button type="button" (click)="savecomment()"
+                      class="mt-2 purple-gradiant-bg white full-rounded px-4 py-1 font-sm">ارسال
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<footer-component></footer-component>

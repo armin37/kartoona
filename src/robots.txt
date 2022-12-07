@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://kartoona.com/sitemap.xml

@@ -1,0 +1,27 @@
+<header-component></header-component>
+
+<genre-tag-pg-header-component *ngIf="filter"
+                               [image]="data[0]?.images?.covers[0]?.sizes?data[0].images.covers[0].sizes.sfull:''"
+                               [title]="filter.name">
+</genre-tag-pg-header-component>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div *ngIf="filter.name" class="section-title">
+        <span>
+          {{filter.name}}
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let movie of data" class="col-md-2 col-sm-6">
+      <info-image-top-card-component [data]="movie"></info-image-top-card-component>
+    </div>
+  </div>
+  <paginate (onChangePage)="changePage($event)"
+            [current]="currentPage" [pageCount]="pageCount" [buttons]="5"></paginate>
+</div>
+
+<footer-component></footer-component>

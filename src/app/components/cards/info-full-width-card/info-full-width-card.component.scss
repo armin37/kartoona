@@ -1,0 +1,36 @@
+.poster {
+  border-radius: 1rem;
+}
+.info-container {
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  padding: 20px;
+  padding-top: 150px;
+}
+
+.genres {
+}
+
+.movie-info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  * {
+    color: white;
+    text-align: justify;
+  }
+}
+.width-60 {
+  width: 60% !important;
+}
+.transparrent-bg{
+  padding: 20px;
+  border-radius: 10px;
+  background-color: rgba(255,255,255,0.8);
+  *{
+    color: #444;
+  }
+}

@@ -1,0 +1,33 @@
+<nav *ngIf="count>1">
+  <ul class="pagination">
+    <li *ngIf="start&&se" class="page-item" (click)="changePage(1)"
+        [ngClass]="{disabled:(buttonsList.length>0&&buttonsList[0]===1)}">
+      <a class="page-link" [routerLink]="" tabindex="-1">
+        <i class="fas fa-step-forward"></i>
+      </a>
+    </li>
+    <li *ngIf="previous&&pn" class="page-item" (click)="changePage(current-1)"
+        [ngClass]="{disabled:current===1}">
+      <a class="page-link" [routerLink]="">
+        <i class="fas fa-chevron-right caret-icon"></i>
+      </a>
+    </li>
+    <li class="page-item " *ngFor="let btn of buttonsList;" [ngClass]="{active:btn===currentPage}"
+        (click)="changePage(btn)"
+    >
+      <a class="page-link" [routerLink]="">{{btn}}</a>
+    </li>
+    <li *ngIf="next&&pn" class="page-item" (click)="changePage(current+1)"
+        [ngClass]="{disabled:current===count}">
+      <a class="page-link" [routerLink]="">
+        <i class="fas fa-chevron-left caret-icon"></i>
+      </a>
+    </li>
+    <li *ngIf="end&&se" class="page-item" (click)="changePage(count)"
+        [ngClass]="{disabled:(buttonsList.length>0&&buttonsList[buttonsList.length-1]===count)}">
+      <a class="page-link" [routerLink]="">
+        <i class="fas fa-step-backward"></i>
+      </a>
+    </li>
+  </ul>
+</nav>

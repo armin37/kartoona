@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <div class="row p-md-5 info-container"
+       [style.background-image]="'url('+data?.images?.covers[0]?.sizes?.sfull+')'">
+    <div class="col-6 col-md-9">
+      <picture>
+        <source media="(max-width: 992px)"
+                [srcset]="data?.images?.thumbnails[0]?.sizes?.s150?data.images.thumbnails[0].sizes.s150:''"/>
+        <source media="(max-width: 1920px)"
+                [srcset]="data?.images?.thumbnails[0]?.sizes?.s300?data.images.thumbnails[0].sizes.s300:''"/>
+        <img class="poster mb-2 d-md-none d-block w-100"
+             [routerLink]="'/movie/'+data?.slug"
+             [alt]="data?.persian_name"
+             [src]="data?.images?.thumbnails[0]?.sizes?.s700?data.images.thumbnails[0].sizes.s700:''"/>
+
+      </picture>
+
+      <div class="movie-info d-none d-md-flex">
+        <div class="transparrent-bg">
+          <div class="genres mb-2">
+            <a class="font-xsm" *ngFor="let genre of data.genres;let last=last" [routerLink]="'/genre/'+genre.slug">
+              {{genre.name}}
+              <span *ngIf="!last">، </span>
+            </a>
+          </div>
+          <h2 class="font-lg mb-1">{{data.persian_name}}</h2>
+          <h2 class="font-md">{{data.original_name}}</h2>
+
+          <p class="font-xsm width-60" [innerHTML]="data.summary"></p>
+
+          <a [href]="'/movie/'+data.slug"
+             class="d-inline-block mb-3 white full-rounded border-white medium-button purple-gradiant-bg">
+            مشاهده
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3">
+      <picture>
+        <source media="(max-width: 992px)"
+                [srcset]="data?.images?.thumbnails[0]?.sizes?.s150?data.images.thumbnails[0].sizes.s150:''"/>
+        <source media="(max-width: 1920px)"
+                [srcset]="data?.images?.thumbnails[0]?.sizes?.s300?data.images.thumbnails[0].sizes.s300:''"/>
+        <img class="block poster d-none d-md-block"
+             [routerLink]="'/movie/'+data?.slug"
+             [alt]="data?.persian_name"
+             [src]="data?.images?.thumbnails[0]?.sizes?.s700?data.images.thumbnails[0].sizes.s700:''"/>
+
+      </picture>
+
+      <div class="movie-info d-md-none d-flex">
+        <div class="transparrent-bg">
+          <div class="genres my-2">
+            <a class="font-sm" *ngFor="let genre of data.genres;let last=last" [routerLink]="'/genre/'+genre.slug">
+              {{genre.name}}
+              <span *ngIf="!last">، </span>
+            </a>
+          </div>
+
+          <h2 class="font-xlg mb-1">{{data.persian_name}}</h2>
+          <h2 class="font-lg">{{data.original_name}}</h2>
+
+          <p class="font-sm" [innerHTML]="data.summary"></p>
+
+          <a [href]="'/movie/'+data.slug"
+             class="d-inline-block mb-3 white full-rounded border-white medium-button purple-gradiant-bg">
+            مشاهده
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

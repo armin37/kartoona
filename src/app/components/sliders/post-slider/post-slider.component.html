@@ -1,0 +1,27 @@
+<swiper [config]="config" [index]="0">
+    <div class="slide-container" *ngFor="let slide of data">
+        <div class="info-container">
+            <img width="100%" [src]="slide?.thumbnails?.sfull" />
+            <div class="movie-info d-flex">
+                <div class="transparrent-bg rounded">
+                    <!-- <div class="genres my-2">
+                        <a class="font-sm" *ngFor="let genre of slide.genres;let last=last"
+                            [routerLink]="'/genre/'+genre.slug">
+                            {{genre.name}}
+                            <span *ngIf="!last">، </span>
+                        </a>
+                    </div> -->
+
+                    <h2 class="font-lg mb-1 text-alignment">{{slide.name}}</h2>
+                    
+                    <p class="font-xsm text-justify" [innerHTML]="slide.summary"></p>
+
+                    <a [href]="'/post/'+slide.slug"
+                        class="d-inline-block mb-3 white full-rounded border-white medium-button purple-gradiant-bg">
+                        ادامه مطلب
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</swiper>

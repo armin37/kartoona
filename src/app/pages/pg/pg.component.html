@@ -1,0 +1,23 @@
+<header-component></header-component>
+
+<genre-tag-pg-header-component *ngIf="pg" [image]="'/assets/img/cars1.jpg'" [title]="pg.name">
+</genre-tag-pg-header-component>
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div *ngIf="pg" class="section-title">
+                <span>
+                    {{pg.name}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div *ngFor="let movie of data" class="col-md-2 col-sm-6 mb-3">
+            <info-image-top-card-component [data]="movie"></info-image-top-card-component>
+        </div>
+    </div>
+  <paginate  (onChangePage)="changePage($event)"
+             [current]="current" [pageCount]="pageCount" [buttons]="5"></paginate>
+</div>

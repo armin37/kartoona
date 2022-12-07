@@ -1,0 +1,13 @@
+<router-outlet></router-outlet>
+
+<div *ngIf="iosHelpVisible" id="help">
+  <div class="font-sm px-2 py-5">
+    <i (click)="closeHelp()" class="close-btn fas fa-times"></i>
+    1. در نوار پایین دکمه
+    <img width="20" src="assets/img/icon-share.png" class="icon-share mx-2">
+    را انتخاب کنید. <br/> 2. منوی باز شده را به چپ بکشید و گزینه "Add to home screen" را انتخاب کنید.<br/>
+    <img class="block" src="assets/img/add-to-home-screen.png"/>
+    <br/>
+    3. در مرحله بعد در قسمت بالا روی "Add" یا "save" کلیک کنید.
+  </div>
+</div>

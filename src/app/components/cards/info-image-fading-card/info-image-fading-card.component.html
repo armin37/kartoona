@@ -1,0 +1,36 @@
+<div class="fading-wrapper position-relative pb-5" [routerLink]="'/movie/'+data.slug">
+  <div class="fading-layer"></div>
+
+  <picture>
+    <source media="(max-width: 992px)"
+            [srcset]="data?.images?.thumbnails[0]?.sizes?.s150?data.images.thumbnails[0].sizes.s150:''"/>
+    <source media="(max-width: 1920px)"
+            [srcset]="data?.images?.thumbnails[0]?.sizes?.s300?data.images.thumbnails[0].sizes.s300:''"/>
+    <img class="banner d-block w-100"
+         [alt]="data?.persian_name"
+         [src]="data?.images?.thumbnails[0]?.sizes?.s700?data.images.thumbnails[0].sizes.s700:''"/>
+  </picture>
+
+  <div class="info text-alignment px-3">
+    <p class="genres">
+      <a class="light-black" href="#" *ngFor="let genre of data.genres;let last=last">
+        {{genre.name}}<span *ngIf="!last">,</span>
+      </a>
+    </p>
+    <h2 class="light-black font-lg mb-1">{{data.persian_name}}</h2>
+    <h2 class="light-black font-md">{{data.original_name}}</h2>
+    <p>
+            <span class="rate d-inline-flex align-items-center">
+                <span>{{data.imdb}}</span>
+                <img [alt]="data.imdb" src="./assets/img/icons/imdb.png"/>
+            </span>
+    </p>
+    <p class="text-justify light-black font-xsm">
+      {{data.summary}}
+    </p>
+    <a [href]="'/movie/'+data.slug"
+       class="d-inline-block mb-3 white full-rounded border-white medium-button purple-gradiant-bg">
+      مشاهده
+    </a>
+  </div>
+</div>

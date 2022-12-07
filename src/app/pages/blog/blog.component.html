@@ -1,0 +1,53 @@
+<header-component></header-component>
+
+<div class="bg-layer-1">
+  <div class="pt-150 container">
+    <div *ngIf="suggested && suggested.length>0" class="row">
+      <div class="col">
+        <div class="col">
+          <div class="section-title">
+                    <span>
+                        مطالب ویژه
+                    </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="suggested && suggested.length>0" class="row">
+      <div class="col">
+        <post-slider-component class="block" [data]="suggested"></post-slider-component>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-5">
+    <div *ngIf="data && data.length>0" class="container py-4">
+      <p class="margin-top-20 dark-text text-center between-lines orange margin-20">
+        برچسب‌های محبوب
+      </p>
+
+      <div class="text-center mb-5">
+        <span *ngFor="let tag of favouriteTags"
+              [routerLink]="'/blog/tag/' + tag.slug"
+              class="rounded d-inline-block white purple-bg px-3 py-1 my-1 mx-2 pointer">
+          {{tag.name}}
+        </span>
+      </div>
+
+      <div *ngFor="let blog of data; let i=index" class="row">
+        <div class="col">
+          <div class="col">
+            <post-wide-card-component class="block mb-3" [rowClass]="i%2==0?'odd':'even'" [data]="blog"
+                                      [background]="'gray-bg'">
+            </post-wide-card-component>
+          </div>
+        </div>
+      </div>
+
+      <paginate (onChangePage)="changePage($event)"
+                [current]="currentPage" [pageCount]="pageCount" [buttons]="5"></paginate>
+    </div>
+  </div>
+
+  <footer-component></footer-component>
+</div>

@@ -1,0 +1,27 @@
+@import "../../../../customVariables.scss";
+
+.poster {
+    border-radius: 1rem;
+}
+.title {
+    h3 {
+        margin: 0;
+        margin-left: 0.5rem;
+        color: $xlight-black;
+    }
+}
+.genres {
+    text-align: $text-alignment;
+    a {
+        color: $dark-gray;
+    }
+    span {
+        display: inline-block;
+        text-align: $text-alignment;
+    }
+}
+.bookmark-icon{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+}

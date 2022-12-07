@@ -1,0 +1,39 @@
+<header-component></header-component>
+<div class="d-flex justify-content-center h-100 align-items-center">
+  <div class="card p-5" *ngIf="payment">
+    <div class="card-header text-center">
+      <i *ngIf="payment.status==1" class="fas fa-check-circle icon green"></i>
+      <i *ngIf="payment.status==0" class="fas fa-times-circle icon danger"></i>
+    </div>
+    <div *ngIf="payment.status==1" class="card-body text-justify green-bg">
+      <h5>{{payment.text}}</h5>
+      <h6>شماره تراکنش : {{payment.refId}}</h6>
+      <h6>تاریخ : {{payment.date}}</h6>
+      <h6>مبلغ : {{payment.price}}  </h6>
+    </div>
+    <div *ngIf="payment.status==0" class="card-body text-justify danger-bg">
+      <h5>{{paymentStatusText.failed}}</h5>
+    </div>
+    <div class="text-center my-4">
+      <a
+        *ngIf="payment.status==1"
+        class="d-inline-block py-2 px-4 white ml-2 full-rounded border-white medium-button cursor-pointer green-bg"
+        [routerLink]="callback"
+      >بازگشت</a>
+      <a
+        *ngIf="payment.status==0"
+        class="d-inline-block py-2 px-4 white ml-2 full-rounded border-white medium-button cursor-pointer danger-bg"
+        [routerLink]="callback"
+      >بازگشت</a>
+    </div>
+
+  </div>
+
+</div>
+
+<!--<h6>شماره تراکنش : {{payment.no}}</h6>-->
+<!--<h6>تاریخ : {{payment.date}}</h6>-->
+<!--<h6>شماره پیگیری : {{payment.ref}}</h6>-->
+<!--<h6>مبلغ : {{payment.amount}}  </h6>-->
+<!--<h6>شماره کارت : {{payment.card}}</h6>-->
+<footer-component></footer-component>

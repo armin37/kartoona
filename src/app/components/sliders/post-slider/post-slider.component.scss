@@ -1,0 +1,25 @@
+.slide-container {
+    min-height: 300px;
+}
+.info-container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.transparrent-bg {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem;
+    direction: rtl;
+    position: absolute;
+    top: 50%;
+    right: 30px;
+    width: 50%;
+}
+@media screen and (max-width: 768px) {
+    .transparrent-bg {
+        background-color: rgba(255, 255, 255, 0.6);
+        top: 50%;
+        transform: translateY(-50%);
+        right: 5%;
+        width: 90%;
+    }
+}

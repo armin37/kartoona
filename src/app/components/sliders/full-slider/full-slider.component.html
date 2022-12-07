@@ -1,0 +1,43 @@
+<swiper [slidesPerView]="1" [spaceBetween]="20"
+        [pagination]="{ el:'.full-slider-pagination', clickable: true }"
+        [navigation]="true"
+        [autoplay]="true"
+        [loop]="true">
+  <ng-template swiperSlide *ngFor="let slide of data;let i = index">
+    <div class="slide-bg"
+         [defaultImage]="i===0?slide.images?.slider[0]?.sizes?.sfull:'assets/placeholder2.jpg'"
+         [lazyLoad]="slide.images?.slider[0]?.sizes?.sfull">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+
+            <div class="slide-info">
+              <div class="top-links text-right mb-3">
+                <a class="d-inline-block purple-bg py-1 px-2 white ml-2 rounded" *ngFor="let tl of slide.genres"
+                   [routerLink]="'/genre/'+tl.slug">{{tl.name}}</a>
+              </div>
+
+              <div class="text cursor-pointer">
+                <h1 class="font-lg" [routerLink]="'/movie/'+slide.slug">{{slide.persian_name}}</h1>
+                <div [routerLink]="'/movie/'+slide.slug" [innerHTML]="slide.summary"></div>
+
+                <a
+                  class="d-inline-block py-2 px-4 white ml-2 mt-2 full-rounded border-white medium-button purple-gradiant-bg"
+                  [routerLink]="'/movie/'+slide.slug">
+                  ادامه مطلب
+                </a>
+              </div>
+
+              <div class="bottom-links text-right mt-3">
+                <a
+                  class="d-inline-block mt-2 mt-md-0 py-2 px-4 white ml-2 full-rounded border-white medium-button purple-gradiant-bg"
+                  *ngFor="let bl of slide.tags" [routerLink]="'/tag/'+bl.slug">{{bl.name}}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <div slot="container-end" class="swiper-pagination full-slider-pagination"></div>
+</swiper>

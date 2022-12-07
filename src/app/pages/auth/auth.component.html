@@ -1,0 +1,194 @@
+<header-component></header-component>
+<div class="auth-container">
+
+  <swiper #swiper
+          [initialSlide]="sliderIndex"
+          [slidesPerView]="sliderConfig.slidesPerView"
+          [breakpoints]="sliderConfig.breakpoints"
+          [allowTouchMove]="sliderConfig.allowTouchMove"
+          [spaceBetween]="sliderConfig.spaceBetween">
+    <ng-template swiperSlide>
+      <div class="text-center">
+        <div class="text-center mb-3">
+        <span class="card-badge">
+          جهت ورود به سایت،ایمیل رمز ورود خود را تنظیم کنید.
+        </span>
+        </div>
+        <form [formGroup]="registerForm" #signupSection class="d-inline-block">
+          <div class="card p-0">
+            <div class="card-body">
+              <div class="input-group my-3 d-block">
+                <div class="input-group mb-2">
+                  <input formControlName="phone_number" type="text" placeholder="شماره همراه" aria-label="Large"
+                         class="form-control">
+                </div>
+
+                <div class="input-group  mb-2">
+                  <input #suInput formControlName="password" type="password" class="form-control"
+                         placeholder="رمز عبور">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text input-icon"><i #suIcon class="fas fa-eye ml-2"
+                                                                (click)="togglePassword('signup')"></i></div>
+                  </div>
+                </div>
+
+                <div class="input-group-prepend d-block">
+                  <div class="text-center mt-4 ">
+                    <button [disabled]="registerForm.invalid || disableButton" class="quick-btn w-100 mr-0"
+                            type="button"
+                            (click)="register()">
+                      ثبت نام
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div class="text-center">
+        <div class="text-center mb-3">
+        <span class="card-badge">
+          کدی که به شماره {{sendCodeForm.value.phone_number}} پیامک شده را وارد کنید.
+        </span>
+        </div>
+        <form [formGroup]="sendCodeForm" class="d-inline-block">
+          <div class="card p-0">
+            <div class="card-body">
+              <div class="input-group my-3 d-flex">
+                <div class="input-group-prepend d-inline-flex">
+                  <input formControlName="code" type="text" placeholder="کد تایید" aria-label="Large"
+                         class="form-control text-left ltr">
+                </div>
+                <div class="input-group-prepend d-inline-flex">
+                  <button [disabled]="sendCodeForm.invalid || disableButton" class="quick-btn w-100 " type="button"
+                          (click)="validateCode()">
+                    بررسی
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div>
+        <div class="text-center mb-3">
+        <span class="card-badge">
+          برای ایجاد یا ورود به حساب کاربری، شماره موبایل خود را وارد کنید.
+        </span>
+        </div>
+        <div class="text-center">
+          <form [formGroup]="quickloginForm" class="d-inline-block">
+            <div class="card p-0">
+              <div class="card-body">
+                <div class="input-group my-3 d-flex">
+                  <div class="input-group-prepend d-inline-flex">
+                    <input formControlName="phone_number" type="text" placeholder="شماره همراه" aria-label="Large"
+                           class="form-control text-left ltr">
+                  </div>
+                  <div class="input-group-prepend d-inline-flex">
+                    <button [disabled]="quickloginForm.invalid || disableButton" class="quick-btn w-100 " type="button"
+                            (click)="checkUserExists()">
+                      ورود/ثبت‌نام
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div class="text-center">
+        <form [formGroup]="loginForm" #loginSection class="d-inline-block">
+          <div class="card p-0">
+            <div class="card-body">
+              <div class="input-group my-3 d-block">
+                <div class="input-group-prepend d-block mb-2">
+                  <input formControlName="username" type="text" placeholder="شماره همراه" aria-label="Large"
+                         class="form-control">
+                </div>
+                <div class="input-group  mb-2">
+                  <input #lpInput formControlName="password" type="password" class="form-control"
+                         placeholder="رمز عبور">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text input-icon">
+                      <i #lpIcon class="fas fa-eye ml-2" (click)="togglePassword('login')"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="input-group forget-remember">
+                  <input formControlName="remember" type="checkbox" class="custom-control-input" id="customCheck1">
+                  <label class="custom-control-label label-link" for="customCheck1">مرا به خاطر بسپار</label>
+                </div>
+                <div class="input-group  mb-2">
+                  <a class="text-muted d-block label-link" (click)="forgetPassword()">فراموشی رمز عبور</a>
+                </div>
+                <div class="input-group-prepend  d-block">
+                  <div class="text-center mt-4 ">
+                    <button [disabled]="loginForm.invalid || disableButton" type="button" (click)="login()"
+                            class="quick-btn w-100 mr-0">
+                      ورود
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </ng-template>
+
+    <ng-template swiperSlide>
+      <div>
+        <div class="text-center mb-3">
+        <span class="card-badge">
+          کدی که به شماره {{forgetPasswordForm.controls.phone_number.value}} پیامک شده را به همراه رمز جدید وارد کنید.
+        </span>
+        </div>
+
+        <div class="text-center">
+          <form [formGroup]="forgetPasswordForm" class="d-inline-block">
+            <div class="card p-0">
+              <div class="card-body">
+                <div class="input-group my-3 d-block">
+                  <div class="input-group-prepend d-block mb-2">
+                    <input formControlName="phone_number" type="text" placeholder="شماره همراه" aria-label="Large"
+                           class="form-control">
+                  </div>
+
+                  <div class="input-group-prepend d-block mb-2">
+                    <input formControlName="validationCode" type="text" placeholder="کد تایید" aria-label="Large"
+                           class="form-control">
+                  </div>
+
+                  <div class="input-group-prepend mb-2">
+                    <input formControlName="password" type="password" class="form-control" placeholder="رمز عبور جدید">
+                  </div>
+
+                  <div class="input-group-prepend  d-block">
+                    <div class="text-center mt-4 ">
+                      <button [disabled]="forgetPasswordForm.invalid || disableButton" (click)="resetPassword()"
+                              class="btn w-100 active-btn">
+                        بروزرسانی
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </ng-template>
+  </swiper>
+</div>
+<footer-component></footer-component>

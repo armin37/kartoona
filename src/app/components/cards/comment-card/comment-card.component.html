@@ -1,0 +1,20 @@
+<div class="row align-items-start">
+  <div class="col-4 col-md-3 col-lg-2">
+    <div class="white-bg-with-shadow text-center px-2 py-3">
+      <!-- class="block full-rounded" -->
+      <img width="70%" src="assets/img/avatar.png"/>
+      <p class="text-center font-sm light-black my-2">
+        {{comment.user?((comment.user.first_name&&comment.user.last_name)?(comment.user.first_name+" "+comment.user.last_name):("user "+comment.user.id)):comment.name}}
+      </p>
+      <p class="text-center font-sm light-black my-0">
+        {{comment.shcreated}}
+      </p>
+    </div>
+  </div>
+
+  <div class="col-8 col-md-9 col-lg-10 font-sm text-justify light-black pr-0">
+    <div class="white-bg-with-shadow p-3">
+      {{comment.comment}}
+    </div>
+  </div>
+</div>

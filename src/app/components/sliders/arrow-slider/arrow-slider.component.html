@@ -1,0 +1,17 @@
+<div [id]="id" class="arrow-slider-wrapper relative">
+  <span [id]="id+'Next'" class="swiper-button-next"></span>
+  <span [id]="id+'Prev'" class="swiper-button-prev"></span>
+
+  <swiper [slidesPerView]="localConfig.slidesPerView"
+          [breakpoints]="localConfig.breakpoints"
+          [allowTouchMove]="localConfig.allowTouchMove"
+          [spaceBetween]="localConfig.spaceBetween"
+          [navigation]=" {prevEl:'#'+id+'Next', nextEl: '#'+id+'Prev'}">
+    <ng-template swiperSlide *ngFor="let slide of data">
+      <info-image-top-card-component *ngIf="cardType===1" [data]="slide"></info-image-top-card-component>
+      <info-image-right-card-component *ngIf="cardType===2" [data]="slide"></info-image-right-card-component>
+      <info-image-top-card-component *ngIf="cardType===3" [data]="slide"
+                                     [imageType]="2"></info-image-top-card-component>
+    </ng-template>
+  </swiper>
+</div>

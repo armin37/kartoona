@@ -1,0 +1,53 @@
+<div class="position-relative pointer" [routerLink]="'/movie/'+data.slug">
+  <picture *ngIf="imageType===1">
+    <source media="(max-width: 992px)"
+            [srcset]="data?.images?.thumbnails[0]?.sizes?.s150?data.images.thumbnails[0].sizes.s150:''"/>
+    <source media="(max-width: 1920px)"
+            [srcset]="data?.images?.thumbnails[0]?.sizes?.s300?data.images.thumbnails[0].sizes.s300:''"/>
+    <img class="d-block w-100 poster"
+         [routerLink]="'/movie/'+data?.slug"
+         [alt]="data?.persian_name"
+         [src]="data?.images?.thumbnails[0]?.sizes?.s700?data.images.thumbnails[0].sizes.s700:''"/>
+  </picture>
+
+  <picture *ngIf="imageType===2">
+    <source media="(max-width: 992px)"
+            class="d-block w-100 poster"
+            [srcset]="data?.images?.covers[0]?.sizes?.s150?data.images.covers[0].sizes.s150:''"/>
+
+    <source media="(max-width: 1920px)"
+            class="d-block w-100 poster"
+            [srcset]="data?.images?.covers[0]?.sizes?.s300?data.images.covers[0].sizes.s300:''"/>
+
+    <img class="d-block w-100 poster"
+         [routerLink]="'/movie/'+data?.slug"
+         [alt]="data?.persian_name"
+         [src]="data?.images?.covers[0]?.sizes?.s700?data.images.covers[0].sizes.s700:''"/>
+  </picture>
+
+  <div *ngIf="showFavorite">
+    <i (click)="addToFavorites()"
+       *ngIf="!bookmark"
+       class="fas fa-bookmark font-xlg cursor-pointer gray bookmark-icon"></i>
+    <i (click)="addToFavorites()"
+       *ngIf="bookmark"
+       class="fas fa-bookmark font-xlg cursor-pointer purple bookmark-icon"></i>
+  </div>
+</div>
+
+<div class="title d-flex align-items-center mt-2 overflow-hidden" [routerLink]="'/movie/'+data.slug">
+  <h3 class="text-right font-xsm">{{data?.persian_name}}</h3>
+</div>
+
+<p class="my-1 text-alignment">
+  <span class="rate d-inline-flex align-items-center">
+    <span>{{data?.imdb}}</span>
+    <img [alt]="data?.imdb" src="/assets/img/icons/imdb.png"/>
+  </span>
+</p>
+
+<p class="genres">
+  <a class="font-xxsm" href="#" *ngFor="let genre of data?.genres;let last=last" [routerLink]="'/genre/'+genre.slug">
+    {{genre.name}} <span *ngIf="!last"> , </span>
+  </a>
+</p>

@@ -1,0 +1,212 @@
+<div class="container-fluid position-relative">
+  <div *ngIf="!userService.isFromIran" class="alert alert-warning text-right alert-dismissible fade show" role="alert">
+    برای استفاده بهتر و بهره مندی از تخفیف حجمی فیلترشکن خود را خاموش کنید
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand d-lg-block d-none mr-0" routerLink="/">
+      <img width="80px" src="assets/img/icons/logo-sm.png"/>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <a routerLink="/" class="text-center mx-auto mb-1 d-lg-none">
+      <img width="80" src="assets/img/icons/logo-sm.png"/>
+    </a>
+
+    <div class="form-inline my-2 my-lg-0 d-lg-none">
+      <div class="search">
+        <div>
+          <input (keyup)="fireSearch()" [(ngModel)]="searchWord" type="text" placeholder="" required>
+        </div>
+      </div>
+    </div>
+    <!--
+        <nav class="menu">
+          <ol>
+            <li class=""><a href="#0">Home</a></li>
+            <li class="menu-item"><a href="#0">About</a></li>
+            <li class="menu-item">
+              <a href="#0">Widgets</a>
+              <ol class="sub-menu">
+                <li class="menu-item"><a href="#0">Big Widgets</a></li>
+                <li class="menu-item"><a href="#0">Bigger Widgets</a></li>
+                <li class="menu-item"><a href="#0">Huge Widgets</a></li>
+              </ol>
+            </li>
+            <li class="menu-item">
+              <a href="#0">Kabobs</a>
+              <ol class="sub-menu">
+                <li class="menu-item"><a href="#0">Shishkabobs</a></li>
+                <li class="menu-item"><a href="#0">BBQ kabobs</a></li>
+                <li class="menu-item"><a href="#0">Summer kabobs</a></li>
+              </ol>
+            </li>
+            <li class="menu-item"><a href="#0">Contact</a></li>
+          </ol>
+        </nav> -->
+
+    <div class="collapse navbar-collapse menu" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        <li class="d-lg-none">
+          <div *ngIf="userService.user" class="dropdown dropdown-sm mr-3">
+            <button class="btn btn-light dropdown-toggle light-black" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-user-cog ml-2"></i>
+            </button>
+            <div class="dropdown-menu text-alignment" aria-labelledby="dropdownMenuButton">
+              <span class="dropdown-item">امتیاز شما: <span class="user-score">
+                {{userService.user?.point}}
+              </span></span>
+              <a class="dropdown-item" routerLink="/pricing" href="#">خرید بسته</a>
+              <a routerLink="/profile" class="dropdown-item" href="#">ویرایش پروفایل</a>
+              <a (click)="userService.logout()" class="dropdown-item" href="#">خروج</a>
+            </div>
+          </div>
+        </li>
+
+        <li class="nav-item d-lg-none menu-item no-line" *ngIf="!userService.user">
+          <a class="nav-link" routerLink="/auth">
+            ورود/ثبت‌نام</a>
+        </li>
+
+        <li *ngFor="let menu of headerMenu;" class="nav-item menu-item">
+          <a class="nav-link" routerLink="/{{menu.url}}">
+            {{menu.name}}
+          </a>
+
+          <ul class="sub-menu">
+            <li *ngFor="let sub of menu.itemlist">
+              <a class="nav-link menu-item" routerLink="/{{sub.url}}">
+                {{sub.name}}
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!--
+                <li class="nav-item d-lg-none">
+                  <a class="nav-link" href="#">ارتباط با ما</a>
+                </li>
+
+                <li class="nav-item d-lg-none">
+                  <a class="nav-link" href="#">درباره کارتونا</a>
+                </li> -->
+      </ul>
+
+      <div class="d-none d-lg-flex position-relative col-5 text-left flex-row-reverse align-items-center">
+        <div class="mr-4 py-2">
+          <div class="search">
+            <div>
+              <input (keyup)="fireSearch()" [(ngModel)]="searchWord" type="text" placeholder="" required>
+            </div>
+          </div>
+        </div>
+
+        <a *ngIf="!userService.user" routerLink="/auth" class="mr-4 light-black no-line" href="#">ورود/ثبت نام</a>
+
+        <div *ngIf="userService.user" class="dropdown">
+          <button class="btn btn-light dropdown-toggle light-black" type="button" id="dropdownMenuButtonlg"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-user-cog ml-2"></i>
+          </button>
+          <div class="dropdown-menu text-alignment" aria-labelledby="dropdownMenuButtonlg">
+            <span class="dropdown-item">امتیاز شما: <span class="user-score">
+              {{userService.user?.point}}
+            </span></span>
+            <a class="dropdown-item" routerLink="/pricing" href="#">خرید بسته</a>
+            <a routerLink="/profile" class="dropdown-item" href="#">ویرایش پروفایل</a>
+            <a (click)="userService.logout()" class="dropdown-item" href="#">خروج</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </nav>
+
+  <div *ngIf="searchResult" id="searchResultLg">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="section-title mb-4">
+          <span>
+            فیلم‌ها
+          </span>
+        </div>
+
+        <div *ngFor="let movie of searchResult.movies" (click)="goToResult('movie',movie)"
+             class="row align-items-center m-0">
+          <div class="col-9 text-right light-black pr-3 font-sm">
+            {{movie.persian_name}}
+          </div>
+          <div class="col-3 pl-3">
+            <img width="100%"
+                 [src]="movie.images?.thumbnails[0]?.sizes?.s300?movie.images.thumbnails[0].sizes.s300:'./assets/img/placeholder.gif'"/>
+          </div>
+
+          <div class="separator"></div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="section-title mb-4">
+          <span>
+            سریال‌ها
+          </span>
+        </div>
+
+        <div *ngFor="let serie of searchResult.series" (click)="goToResult('movie',serie)"
+             class="row align-items-center m-0">
+          <div class="col-9 text-right light-black pr-3 font-sm">
+            {{serie.persian_name}}
+          </div>
+          <div class="col-3 pl-3">
+            <img width="100%"
+                 [src]="serie.images?.thumbnails[0]?.sizes?.s300?serie.images.thumbnails[0].sizes.s300:'./assets/img/placeholder.gif'"/>
+          </div>
+
+          <div class="separator"></div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="section-title mb-4">
+          <span>
+            بلاگ
+          </span>
+        </div>
+
+        <div *ngFor="let blog of searchResult.blogs" (click)="goToResult('post',blog)"
+             class="row align-items-center m-0">
+          <div class="col-9 text-right light-black pr-3 font-sm">
+            {{blog.name}}
+          </div>
+          <div class="col-3 pl-3">
+            <img width="100%"
+                 [src]="blog.thumbnails?.s300?blog.thumbnails.s300:'./assets/img/placeholder.gif'"/>
+          </div>
+
+          <div class="separator"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="userService?.user?.pgs && userService.showPg" routerLink="/profile" id="pg-notif" class="cursor-pointer">
+    <p class="font-sm bold">
+      رده سنی ثبت شده
+    </p>
+    <p class="font-sm">
+      {{userService.user?.pgs.name}}
+    </p>
+    <p class="text-center">
+      <i (click)="userService.showPg = false" class="fa fa-times"></i>
+    </p>
+  </div>
+</div>
+
+<div class="back-drop"></div>

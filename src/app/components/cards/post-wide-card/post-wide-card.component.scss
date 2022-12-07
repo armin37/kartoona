@@ -1,0 +1,27 @@
+.container {
+  border-radius: 0.3rem;
+  border: 1px solid #ddd;
+}
+
+.odd {
+  flex-direction: row-reverse;
+}
+
+.postInfo {
+  p {
+    margin-bottom: 0;
+    margin-top: 0.5rem;
+
+    span {
+      display: inline-block;
+      margin-right: 0.5rem;
+      color: #888;
+    }
+
+    i {
+      position: relative;
+      top: 2px;
+      color: #888;
+    }
+  }
+}
