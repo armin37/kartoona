@@ -5,7 +5,6 @@ import {FooterComponent} from './footer/footer.component';
 import {RouterModule} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {GenreTagPgHeaderComponent} from './genre-tag-pg-header/genre-tag-pg-header.component';
-import {LazyLoadImageModule} from 'ng-lazyload-image';
 
 
 @NgModule({
@@ -22,8 +21,7 @@ import {LazyLoadImageModule} from 'ng-lazyload-image';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
-    LazyLoadImageModule
+    FormsModule
   ]
 })
 export class HeadersModule {
