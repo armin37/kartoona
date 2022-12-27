@@ -58,12 +58,14 @@ export class ApiService {
 
   public sendRequest = async (method = 'POST',
                               url = '/',
-                              body = {},
+                              body?,
                               headers = null,
                               notConcatEndpoint?: boolean,
                               hideLoading?: boolean,
                               hideError?: boolean) => {
     // if (isPlatformBrowser(this.platformId)) {
+    body = body ? JSON.stringify(body) : null;
+
     if (!headers) {
       headers = this.generateHeader(this.headerTypes.FROM_DATA);
     }

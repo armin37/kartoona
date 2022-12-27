@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {SliderService} from 'src/app/services/slider/slider.service';
 import {MovieService} from 'src/app/services/movie.service';
-import Hls from 'hls.js';
-import * as Plyr from 'plyr';
 
-declare var window: any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -19,8 +16,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.getSlider();
-    // this.loadSectionsAltogether();
+    this.getSlider();
+    this.loadSectionsAltogether();
   }
 
   getSlider = async () => {
@@ -40,7 +37,6 @@ export class HomeComponent implements OnInit {
     for (let i = 0; i < this.sectionCounts; i++) {
       this.loadOneSectionMovies(i);
     }
-    console.log(this.sections);
   };
 
   loadOneSectionMovies = async (index: number) => {

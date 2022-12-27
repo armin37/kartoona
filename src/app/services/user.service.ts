@@ -107,7 +107,7 @@ export class UserService {
   };
 
   loadLogedInUser = async () => {
-    const res: any = await this.apiService.sendRequest('POST', 'auth/fetchprofileinfo', {});
+    const res: any = await this.apiService.sendRequest('POST', 'auth/fetchprofileinfo', JSON.stringify(null));
     if (res && res.status === 200) {
       this.user = res.body;
       localStorage.setItem('uuid', res.body.uuid);
@@ -119,7 +119,7 @@ export class UserService {
   loadLoggedInUser(): Observable<any> {
     const headers = this.apiService.generateHeader(this.apiService.headerTypes.FROM_DATA);
     const obs$ = this.http.post('https://api.kartoona.com/auth/fetchprofileinfo',
-      {},
+      JSON.stringify(null),
       {
         headers
       }).pipe(
