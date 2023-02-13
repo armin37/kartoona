@@ -96,7 +96,6 @@ export class ApiService {
         if (err.status >= 500) {
           await this.delay(500 * (i + 1));
           if (i === this.retryCount - 1) {
-            console.log(err);
             if (!hideError && err && err.error) {
               this.presentToast(err.error.message);
             }
