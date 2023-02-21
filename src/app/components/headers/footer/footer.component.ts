@@ -12,7 +12,7 @@ export class FooterComponent implements OnInit {
   constructor( public apiService: ApiService) { }
 
   ngOnInit(): void {
-    // this.initfooterMenuPageMenu();
+    this.initfooterMenuPageMenu();
   }
 
   initfooterMenuPageMenu = async () => {

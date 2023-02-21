@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.initheaderPageMenu();
+    this.initheaderPageMenu();
   }
 
   initheaderPageMenu = async () => {
@@ -39,7 +39,6 @@ export class HeaderComponent implements OnInit {
   };
 
   fireSearch() {
-    console.log(this.searchWord);
     if (this.searchWord && this.searchWord.trim().length > 0) {
       this.search();
     } else {

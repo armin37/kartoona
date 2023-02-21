@@ -91,13 +91,11 @@ export class UserService {
 
   checkUserExists = async (body) => {
     const res: any = await this.apiService.sendRequest('POST', 'auth/checkUserExists', body);
-    console.log(res);
     return res;
   };
 
   checkValidationCode = async (body) => {
     const res: any = await this.apiService.sendRequest('POST', 'auth/checkValidationCode', body);
-    console.log(res);
     if (res && res.status === 200) {
       if (isPlatformBrowser(this.platformId)) {
         this.apiService.token = res.headers.get('x-auth-token');
@@ -117,7 +115,7 @@ export class UserService {
   };
 
   loadLoggedInUser(): Observable<any> {
-    const headers = this.apiService.generateHeader(this.apiService.headerTypes.FROM_DATA);
+    const headers = this.apiService.generateHeader(this.apiService.headerTypes.FORM_DATA);
     const obs$ = this.http.post('https://api.kartoona.com/auth/fetchprofileinfo',
       JSON.stringify(null),
       {

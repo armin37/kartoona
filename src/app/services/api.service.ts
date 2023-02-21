@@ -17,7 +17,7 @@ export class ApiService {
   retryCount = 1;
   headerTypes = {
     JSON: 'JSON',
-    FROM_DATA: 'FORM_DATA',
+    FORM_DATA: 'FORM_DATA',
   };
   private pid: string;
   private language: string;
@@ -48,7 +48,7 @@ export class ApiService {
     // }
     if (type === this.headerTypes.JSON) {
       header = new HttpHeaders({...authHead, 'Content-Type': 'application/json'});
-    } else if (type === this.headerTypes.FROM_DATA) {
+    } else if (type === this.headerTypes.FORM_DATA) {
       header = new HttpHeaders(authHead);
       header.append('Content-Type', 'multipart/form-data');
       header.append('Accept', 'application/json');
@@ -67,7 +67,7 @@ export class ApiService {
     body = body ? JSON.stringify(body) : null;
 
     if (!headers) {
-      headers = this.generateHeader(this.headerTypes.FROM_DATA);
+      headers = this.generateHeader();
     }
 
     if (!notConcatEndpoint) {
@@ -147,7 +147,7 @@ export class ApiService {
                              hideLoading = false,
                              hideError?: boolean) => {
     if (!headers) {
-      headers = this.generateHeader(this.headerTypes.FROM_DATA);
+      headers = this.generateHeader(this.headerTypes.FORM_DATA);
     }
     const formData = new FormData();
     if (body) {
