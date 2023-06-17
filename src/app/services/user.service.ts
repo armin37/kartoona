@@ -139,6 +139,15 @@ export class UserService {
     return false;
   };
 
+  deleteAccount = async (body) => {
+    const res: any = await this.apiService.sendRequest('POST', 'auth/deleteAccount', body);
+    if (res && res.status === 200) {
+      await this.logout();
+      return true;
+    }
+    return false;
+  };
+
   submitOrder = async (body) => {
     const res: any = await this.apiService.sendRequest('POST', 'finance/zarinpalPayment', body);
     if (res.status === 200) {

@@ -7,9 +7,11 @@
       <div class="row white-bg-with-shadow align-items-center">
         <div class="col-sm-8">
           <p class="mt-3 mb-2 light-black font-sm text-right">وضعیت اشتراک</p>
-          <p *ngIf="!userService.user?.activePlan" class="mb-3 red font-sm text-right">شما اشتراک ندارید. برای تماشای فیلم‌ها اشتراک تهیه کنید</p>
+          <p *ngIf="!userService.user?.activePlan" class="mb-3 red font-sm text-right">شما اشتراک ندارید. برای تماشای
+            فیلم‌ها اشتراک تهیه کنید</p>
           <p *ngIf="userService.user?.activePlan" class="mb-3 green font-xsm text-right">
-            طرح {{userService.user?.activePlan?.title}} تا تاریخ {{userService.user?.activePlan?.shend_date}} برای شما فعال شده است
+            طرح {{userService.user?.activePlan?.title}} تا تاریخ {{userService.user?.activePlan?.shend_date}} برای شما
+            فعال شده است
           </p>
         </div>
         <div *ngIf="!userService.user?.activePlan" class="col-sm-4 text-center text-md-left">
@@ -244,6 +246,38 @@
               </div>
             </form>
           </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
+              <i class="fas fa-trash tab-icon"></i>
+              حذف حساب کاربری
+            </ng-template>
+
+            <form [formGroup]="deleteAccountForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>رمز عبور</mat-label>
+                        <input formControlName="password" type="password" matInput>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col text-left">
+                  <button [disabled]="deleteAccountForm.invalid" (click)="deleteAccount()"
+                          class="purple-gradiant-bg white mt-5 rounded px-3 py-2">
+                    حذف حساب
+                  </button>
+                </div>
+              </div>
+            </form>
+          </mat-tab>
+
         </mat-tab-group>
       </div>
     </div>
