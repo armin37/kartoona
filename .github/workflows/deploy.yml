@@ -21,8 +21,8 @@ jobs:
       - name: Copy SSH key to server
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo "${{ secrets.DEPLOY_KEY }}" > /root/.ssh/id_rsa
+          chmod 600 /root/.ssh/id_rsa
 
       - name: Update code on VPS
         uses: appleboy/ssh-action@master
