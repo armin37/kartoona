@@ -18,11 +18,11 @@ jobs:
         with:
           node-version: 16
 
-      - name: Copy SSH key to server
+      - name: Copy SSH key to runner
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.DEPLOY_KEY }}" > /root/.ssh/id_rsa
-          chmod 600 /root/.ssh/id_rsa
+          mkdir -p $HOME/.ssh
+          echo "${{ secrets.DEPLOY_KEY }}" > $HOME/.ssh/id_rsa
+          chmod 600 $HOME/.ssh/id_rsa
 
       - name: Update code on VPS
         uses: appleboy/ssh-action@master
