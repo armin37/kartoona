@@ -49,8 +49,8 @@ jobs:
       - name: Build Angular app on VPS
         uses: appleboy/ssh-action@master
         with:
-          host: your-vps-ip
-          username: your-vps-username
+          host: 45.159.115.143
+          username: root
           key: ${{ secrets.DEPLOY_KEY }}
           port: 3031
           script: |
