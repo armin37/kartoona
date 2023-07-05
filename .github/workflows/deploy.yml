@@ -55,4 +55,4 @@ jobs:
           port: 3031
           script: |
             cd /opt/angular/kartoona
-            npm run build -- --prod
+            npm run build --prod
