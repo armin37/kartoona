@@ -46,6 +46,17 @@ jobs:
             cd /opt/angular/kartoona
             npm install
 
+      - name: Remove previous version
+        uses: appleboy/ssh-action@master
+        with:
+          host: 45.159.115.143
+          username: root
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 3031
+          script: |
+            cd /opt/angular/kartoona
+            rm -rf dist/
+
       - name: Build Angular app on VPS
         uses: appleboy/ssh-action@master
         with:
@@ -55,4 +66,14 @@ jobs:
           port: 3031
           script: |
             cd /opt/angular/kartoona
-            npm run build --prod
+            npm run build:ssr
+
+      - name: Restart pm2
+        uses: appleboy/ssh-action@master
+        with:
+          host: 45.159.115.143
+          username: root
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: 3031
+          script: |
+            pm2 restart kartoona
