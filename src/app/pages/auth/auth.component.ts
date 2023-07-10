@@ -1,7 +1,6 @@
-import {AfterViewInit, Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
-import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SliderService} from 'src/app/services/slider/slider.service';
 import * as cloneDeep from 'lodash/cloneDeep';
@@ -26,9 +25,9 @@ export class AuthComponent implements OnInit {
   sliderConfig;
   sliderIndex = 2;
   callback = '/';
-  disableButton: boolean = false;
+  disableButton = false;
 
-  constructor(private http: HttpClient, private formBuilder: FormBuilder,
+  constructor(private formBuilder: FormBuilder,
               private router: Router,
               private route: ActivatedRoute,
               private userService: UserService,
@@ -41,7 +40,6 @@ export class AuthComponent implements OnInit {
       this.callback = this.route.snapshot.queryParamMap.get('callback');
     }
     this.userService.userLoadedChange.subscribe(value => {
-      console.log(this.userService.user);
 
       if (this.userService.user) {
         this.router.navigateByUrl('/profile');

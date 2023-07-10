@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {UserService} from "../../services/user.service";
-import {ApiService} from "../../services/api.service";
-import {SnackbarService} from "../../services/snackbar.service";
+import {UserService} from '../../services/user.service';
+import {ApiService} from '../../services/api.service';
+import {SnackbarService} from '../../services/snackbar.service';
 
 @Component({
   selector: 'app-contact',
@@ -46,6 +46,6 @@ export class ContactComponent implements OnInit {
       this.snackBar.show('با موفقیت ثبت شد.', '', '', 2000);
     }
 
-  }
+  };
 
 }

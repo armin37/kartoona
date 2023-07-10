@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PostSmallCardComponent } from './post-small-card.component';
 
@@ -6,7 +6,7 @@ describe('PostSmallCardComponent', () => {
   let component: PostSmallCardComponent;
   let fixture: ComponentFixture<PostSmallCardComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PostSmallCardComponent ]
     })

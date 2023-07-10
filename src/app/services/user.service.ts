@@ -11,7 +11,7 @@ import {catchError, shareReplay} from 'rxjs/operators';
 })
 export class UserService {
   user: any;
-  userLoaded: boolean = false;
+  userLoaded = false;
   userLoadedChange: Subject<boolean> = new Subject<boolean>();
   showPg = true;
   isFromIran = true;

@@ -5,7 +5,7 @@ import {ApiService} from '../../services/api.service';
 import {LazyLoadEvent} from 'primeng/api/public_api';
 import {MovieService} from 'src/app/services/movie.service';
 import {SnackbarService} from 'src/app/services/snackbar.service';
-import {async} from '@angular/core/testing';
+import { waitForAsync } from '@angular/core/testing';
 import {Router} from '@angular/router';
 
 @Component({

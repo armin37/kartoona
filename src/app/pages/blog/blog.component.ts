@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BlogService} from 'src/app/services/blog.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ApiService} from '../../services/api.service';
 
 @Component({
   selector: 'app-blog',
@@ -50,9 +49,7 @@ export class BlogComponent implements OnInit {
   };
 
   loadBlogPostsByTag = async () => {
-    console.log('aaaa');
     const res = await this.blogService.loadPostsByTag(this.tagSlug, this.currentPage);
-    console.log(res);
     if (res) {
       this.data = this.data = res.data;
       this.pageCount = res.pageCount;
@@ -61,7 +58,6 @@ export class BlogComponent implements OnInit {
 
   loadBlogPostsByCategory = async () => {
     const res = await this.blogService.loadPostsByCategory(this.categorySlug, this.currentPage);
-    console.log(res);
     if (res) {
       this.data = this.data = res.data;
       this.pageCount = res.pageCount;
@@ -70,7 +66,6 @@ export class BlogComponent implements OnInit {
 
   loadFavouriteTags = async () => {
     const res = await this.blogService.loadFavouriteTags();
-    console.log(res);
     if (res) {
       this.favouriteTags = res;
     }
@@ -89,10 +84,8 @@ export class BlogComponent implements OnInit {
     if (!this.tagSlug && !this.categorySlug) {
       this.loadBlogPosts();
     } else if (this.tagSlug && !this.categorySlug) {
-      console.log('1');
       this.loadBlogPostsByTag();
     } else if (!this.tagSlug && this.categorySlug) {
-      console.log('2');
       this.loadBlogPostsByCategory();
     }
   };
