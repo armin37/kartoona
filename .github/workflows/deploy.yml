@@ -55,7 +55,7 @@ jobs:
           port: 3031
           script: |
             cd /opt/angular/kartoona
-            npm run test
+            npm run test-ci
 
       - name: Remove previous version
         if: ${{ success() }}
