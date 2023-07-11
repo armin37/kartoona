@@ -1,11 +1,9 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
-import {ApiService} from '../../services/api.service';
 import {LazyLoadEvent} from 'primeng/api/public_api';
 import {MovieService} from 'src/app/services/movie.service';
 import {SnackbarService} from 'src/app/services/snackbar.service';
-import { waitForAsync } from '@angular/core/testing';
 import {Router} from '@angular/router';
 
 @Component({
