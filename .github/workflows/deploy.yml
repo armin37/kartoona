@@ -36,6 +36,7 @@ jobs:
             git pull origin main
 
       - name: Install dependencies on VPS
+        if: ${{ success() }}
         uses: appleboy/ssh-action@master
         with:
           host: 45.159.115.143
@@ -47,6 +48,7 @@ jobs:
             npm install
 
       - name: Run Tests
+        if: ${{ success() }}
         uses: appleboy/ssh-action@master
         with:
           host: 45.159.115.143
@@ -70,6 +72,7 @@ jobs:
             rm -rf dist/
 
       - name: Build Angular app on VPS
+        if: ${{ success() }}
         uses: appleboy/ssh-action@master
         with:
           host: 45.159.115.143
@@ -81,6 +84,7 @@ jobs:
             npm run build:ssr
 
       - name: Restart pm2
+        if: ${{ success() }}
         uses: appleboy/ssh-action@master
         with:
           host: 45.159.115.143

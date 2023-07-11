@@ -43,9 +43,6 @@ export class BlogSingleComponent implements OnInit {
       email: [''],
       itemId: ['', Validators.required],
     });
-
-    setTimeout(() => this.renderShare(), 3000);
-
   }
 
   loadData = async (slug) => {
@@ -54,12 +51,6 @@ export class BlogSingleComponent implements OnInit {
       this.headerVariablesService.setMetaTags(this.data);
       this.loadComments();
       this.loadSuggestedMovies();
-    }
-  };
-
-  renderShare = () => {
-    if (isPlatformBrowser(this.platformId)) {
-      window.__sharethis__.initialize();
     }
   };
 

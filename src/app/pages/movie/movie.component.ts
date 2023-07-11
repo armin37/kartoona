@@ -141,7 +141,7 @@ export class MovieComponent implements OnInit, AfterViewInit, OnDestroy {
   };
 
   ngAfterViewInit(): void {
-    setTimeout(() => this.renderShare(), 3000);
+    // setTimeout(() => this.renderShare(), 3000);
   }
 
   addToFavorites = async () => {
@@ -152,10 +152,10 @@ export class MovieComponent implements OnInit, AfterViewInit, OnDestroy {
   };
 
   renderShare = () => {
-    if (isPlatformBrowser(this.platformId)) {
-      window.__sharethis__.initialize();
-      this.setUrl();
-    }
+    // if (isPlatformBrowser(this.platformId)) {
+    //   window.__sharethis__.initialize();
+    //   this.setUrl();
+    // }
   };
 
   setUrl = () => {
