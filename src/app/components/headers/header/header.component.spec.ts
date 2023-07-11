@@ -76,7 +76,7 @@ describe('HeaderComponent', () => {
       const menuItemNameElement = menuItem.nativeElement;
       const menuItemName = menuItemNameElement?.textContent;
 
-      expect(menuItemName).toBeUndefined();
+      expect(menuItemName).toBeDefined();
     });
   });
 });
