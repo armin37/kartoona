@@ -81,6 +81,14 @@ export class UserService {
     return false;
   };
 
+  updateDisorders = async (body) => {
+    const res: any = await this.apiService.sendRequest('POST', 'auth/update-disorders', body);
+    if (res && res.status === 200) {
+      return true;
+    }
+    return false;
+  };
+
   sendValidationCode = async (body) => {
     const res: any = await this.apiService.sendRequest('POST', 'auth/sendValidationCode', body);
     if (res && res.status === 200) {

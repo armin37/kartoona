@@ -4,21 +4,32 @@
   background-repeat: no-repeat;
   background-position: top right;
 }
+
 .px-15 {
   padding-left: 15px;
   padding-right: 15px;
 }
-#spiderman{
+
+#spiderman {
   position: relative;
   top: 10px;
 }
-mat-form-field{
+
+mat-form-field {
   width: 100%;
 }
-#ninja-image{
+
+#ninja-image {
   width: 50%;
   max-width: 500px;
 }
-.tab-icon{
+
+.tab-icon {
   padding: 5px;
+}
+
+#disorders {
+  list-style-type: none;
+  padding-inline-start: 0;
+  text-align: right;
 }

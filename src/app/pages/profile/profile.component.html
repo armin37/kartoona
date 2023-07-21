@@ -249,6 +249,49 @@
 
           <mat-tab>
             <ng-template mat-tab-label>
+              <i class="fas fa-baby tab-icon"></i>
+              اختلالات
+            </ng-template>
+
+            <form [formGroup]="disordersForm">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="row">
+                    <div class="col">
+                      <ul formArrayName="disorders" id="disorders">
+                        <li *ngFor="let disorder of disordersTemplate; let i=index">
+                          <mat-checkbox [formControl]="disordersForm.get('disorders').controls[i]">
+                            {{ disorder.name }}
+                          </mat-checkbox>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>رمز عبور</mat-label>
+                        <input formControlName="password" type="password" matInput>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col text-left">
+                  <button [disabled]="disordersForm.invalid" (click)="updateDisorders()"
+                          class="purple-gradiant-bg white mt-5 rounded px-3 py-2">
+                    ذخیره اطلاعات
+                  </button>
+                </div>
+              </div>
+            </form>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template mat-tab-label>
               <i class="fas fa-trash tab-icon"></i>
               حذف حساب کاربری
             </ng-template>

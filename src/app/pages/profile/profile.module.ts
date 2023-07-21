@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CardsModule } from 'src/app/components/cards/cards.module';
 import { TableModule } from 'primeng/table';
 import { MatSelectModule } from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [ProfileComponent],
@@ -25,7 +26,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     CardsModule,
     TableModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ]
 })
 export class ProfileModule { }

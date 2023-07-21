@@ -12,7 +12,7 @@ export class ApiService {
   uuid: string;
   private ENDPOINT = 'https://api.kartoona.com/';
   // private ENDPOINT = 'http://45.159.115.143/';
-  // ENDPOINT = 'http://localhost:8080/';
+  // ENDPOINT = 'http://localhost:8086/';
   // private ENDPOINT = 'http://192.168.1.25:4000/';
   retryCount = 1;
   headerTypes = {

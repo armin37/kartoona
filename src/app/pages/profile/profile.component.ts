@@ -1,10 +1,16 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
 import {LazyLoadEvent} from 'primeng/api/public_api';
 import {MovieService} from 'src/app/services/movie.service';
 import {SnackbarService} from 'src/app/services/snackbar.service';
 import {Router} from '@angular/router';
+
+export interface Disorder {
+  name: string;
+  slug: string;
+  checked: boolean;
+}
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +22,7 @@ export class ProfileComponent implements OnInit {
   changePassForm: FormGroup;
   deleteAccountForm: FormGroup;
   changePgForm: FormGroup;
+  disordersForm: FormGroup;
 
   pgList: [];
   favoriteList: [];
@@ -24,6 +31,17 @@ export class ProfileComponent implements OnInit {
   paymentsTotalRecords: number;
 
   loading: boolean;
+
+  disordersTemplate: Disorder[] = [
+    {name: 'استرس', slug: 'anxiety', checked: false},
+    {name: 'افسردگی', slug: 'depression', checked: false},
+    {name: 'نافرمانی مقابله ای', slug: 'ODD', checked: false},
+    {name: 'سلوک', slug: 'CD', checked: false},
+    {name: 'نقص توجه و بیش فعالی', slug: 'ADHD', checked: false},
+    {name: 'سندروم تورت', slug: 'tourette_syndrome', checked: false},
+    {name: 'وسواس فکری-عملی', slug: 'OCD', checked: false},
+    {name: 'اضطراب پس از سانحه', slug: 'PTSD', checked: false},
+  ];
 
   constructor(private formBuilder: FormBuilder,
               public userService: UserService,
@@ -45,6 +63,13 @@ export class ProfileComponent implements OnInit {
       password: ['', Validators.required],
     });
 
+    this.disordersForm = this.formBuilder.group({
+      disorders: this.buildDisordersArray(),
+      password: ['', Validators.required],
+    });
+
+    // console.log(this.disordersForm.value)
+
     if (!this.userService.user && !this.userService.userLoaded) {
       this.userService.userLoadedChange.subscribe(value => {
         this.generalInfoForm.controls.first_name.setValue(this.userService.user.first_name);
@@ -52,6 +77,7 @@ export class ProfileComponent implements OnInit {
         this.generalInfoForm.controls.email.setValue(this.userService.user.email);
         this.generalInfoForm.controls.phone_number.setValue(this.userService.user.phone_number);
         this.changePgForm.controls.pgId.setValue(this.userService.user.pg_id);
+        this.updateDisordersArray(this.userService.user);
       });
     } else {
       this.generalInfoForm.controls.first_name.setValue(this.userService.user.first_name);
@@ -59,6 +85,7 @@ export class ProfileComponent implements OnInit {
       this.generalInfoForm.controls.email.setValue(this.userService.user.email);
       this.generalInfoForm.controls.phone_number.setValue(this.userService.user.phone_number);
       this.changePgForm.controls.pgId.setValue(this.userService.user.pg_id);
+      this.updateDisordersArray(this.userService.user);
     }
 
     this.changePassForm = this.formBuilder.group({
@@ -79,7 +106,7 @@ export class ProfileComponent implements OnInit {
   updateGeneralInfo = async () => {
     if (this.generalInfoForm.valid) {
       const body = {...this.generalInfoForm.value};
-      let res = await this.userService.updateGeneralInfo(body);
+      const res = await this.userService.updateGeneralInfo(body);
       if (res) {
         this.snackBarService.show('اطلاعات کاربری با موفقیت به‌روزرسانی شد');
       }
@@ -94,7 +121,7 @@ export class ProfileComponent implements OnInit {
         this.snackBarService.show('رمز عبور جدید و تکرار آن برابر نیستند');
         return;
       }
-      let res = await this.userService.changePassword(body);
+      const res = await this.userService.changePassword(body);
       if (res) {
         this.snackBarService.show('رمز عبور با موفقیت عوض شد');
       }
@@ -105,7 +132,7 @@ export class ProfileComponent implements OnInit {
     if (this.deleteAccountForm.valid) {
       const body = {...this.deleteAccountForm.value};
 
-      let res = await this.userService.deleteAccount(body);
+      const res = await this.userService.deleteAccount(body);
       if (res) {
         this.router.navigateByUrl('/');
       }
@@ -115,11 +142,33 @@ export class ProfileComponent implements OnInit {
   updatePg = async () => {
     if (this.changePgForm.valid) {
       const body = {...this.changePgForm.value};
-      let res = await this.userService.updatePg(body);
+      const res = await this.userService.updatePg(body);
       if (res) {
         this.snackBarService.show('رده سنی با موفقیت عوض شد');
         this.userService.loadLogedInUser();
       }
+    }
+  };
+
+  updateDisorders = async () => {
+    console.log(this.disordersForm.value);
+    if (this.disordersForm.invalid) {
+      return;
+    }
+
+    const body = {...this.disordersForm.value};
+    body.disorders = [];
+
+    const disordersFormArray = this.disordersForm.get('disorders') as FormArray;
+    for (let i = 0; i < disordersFormArray.length; i++) {
+      if (disordersFormArray.at(i).value) {
+        body.disorders.push(this.disordersTemplate[i].slug);
+      }
+    }
+
+    const res = await this.userService.updateDisorders(body);
+    if (res) {
+      this.snackBarService.show('لیست اختلالات با موفقیت عوض شد');
     }
   };
 
@@ -145,12 +194,32 @@ export class ProfileComponent implements OnInit {
       rows = event.rows;
       sortField = event.sortField;
     }
-    let body = {
-      'first': first,
-      'rows': rows,
-      'sortField': sortField,
+    const body = {
+      first: first,
+      rows: rows,
+      sortField: sortField,
     };
     this.payments = await this.userService.loadUserPayments(body);
     this.loading = false;
   };
+
+  private buildDisordersArray(): FormArray {
+    const arr = this.disordersTemplate.map(disorder => {
+      return this.formBuilder.control(false);
+    });
+    return this.formBuilder.array(arr);
+  }
+
+  private updateDisordersArray(user) {
+    const disordersFormArray = this.disordersForm.get('disorders') as FormArray;
+    for (let i = 0; i < disordersFormArray.length; i++) {
+      const control = disordersFormArray.at(i);
+      const disorderSlug = this.disordersTemplate[i].slug;
+      if (user.disorders.includes(disorderSlug)) {
+        control.patchValue(true);
+      } else {
+        control.patchValue(false);
+      }
+    }
+  }
 }
