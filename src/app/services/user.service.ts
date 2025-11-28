@@ -124,7 +124,7 @@ export class UserService {
 
   loadLoggedInUser(): Observable<any> {
     const headers = this.apiService.generateHeader(this.apiService.headerTypes.FORM_DATA);
-    const obs$ = this.http.post('https://api.kartoona.com/auth/fetchprofileinfo',
+    const obs$ = this.http.post('https://api.kartoona.ir/auth/fetchprofileinfo',
       JSON.stringify(null),
       {
         headers

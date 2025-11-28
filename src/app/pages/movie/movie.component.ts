@@ -202,7 +202,7 @@ export class MovieComponent implements OnInit, AfterViewInit, OnDestroy {
       movie.writers = writers.join(' , ');
       movie.directors = directors.join(' , ');
       if (isPlatformBrowser(this.platformId)) {
-        movie.url = window.location.href.replace('http://localhost:4200', 'https://kartoona.com');
+        movie.url = window.location.href.replace('http://localhost:4200', 'https://kartoona.ir');
       }
       // movie.genres = movie.genres.filterFiled('name').join(' , ');
       if (movie.kartoonaRate == 0) {
